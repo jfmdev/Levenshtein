@@ -1,0 +1,12 @@
+<div class="row text-center">
+    <h2>Scores</h2>
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table">
+            <tr ng-repeat="score in scores track by $index">
+                <td>#{{($index+1)}}</td>
+                <td><strong>{{score.value}} points </strong></td>
+                <td>{{niceDate(score.date)}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
