@@ -45,7 +45,6 @@ moduleSvc.factory('Words', function(Settings) {
         get: function(difficulty) {
             var words = us_normal;
             var lang = Settings.getLang();
-console.log(lang + " - " + words);
             if(lang === 'en' && difficulty === 'easy') { words = us_easy; }
             if(lang === 'en' && difficulty === 'normal') { words = us_normal; }
             if(lang === 'en' && difficulty === 'hard') { words = us_hard; }

@@ -13,7 +13,7 @@ moduleCtrl.controller('IntroController', function ($scope, $translate, Settings)
     });
 });
 
-moduleCtrl.controller('GameController', function ($scope, Words) {
+moduleCtrl.controller('GameController', function ($scope, $timeout, Words) {
     // Initialize variables.
     var words = Words.get('normal');
     $scope.word1 = "";
@@ -27,12 +27,29 @@ moduleCtrl.controller('GameController', function ($scope, Words) {
     var scores = amplify.store("scores");
     if(scores === null || !Array.isArray(scores)) scores = [];
 
-    // Initialize a round.
-    $scope.round = function() {
-        // Stop timer.
-        if(intervalCode !== null) {
-            clearTimeout(intervalCode);
+    // Function to update countdown.
+    $scope.updateCountDown = function() {
+        // Verify if the timeout as passed or if only the timer must be updated.
+        var now = new Date();
+        if(now.getTime() - start.getTime() > 6000) {
+            // A timeout is like an incorrect answer.
+            $scope.selectAnswer(-1);
+        } else {
+            // Decrease timer.
+            $scope.timer = 6 - parseInt((now.getTime() - start.getTime())/1000, 10);
+
+            // Set timeout again.
+            intervalCode = $timeout(function() { $scope.updateCountDown(); }, 900);
         }
+
+        // Update UI.
+        if(!$scope.$$phase) $scope.$apply();
+    };
+
+    // Initialize a round.
+    $scope.startRound = function() {
+        // Stop timer if need.
+        if(intervalCode !== null) $timeout.cancel(intervalCode);
 
         // Select first word.
         var index = parseInt(Math.random() * (words.length-1), 10);
@@ -59,33 +76,12 @@ moduleCtrl.controller('GameController', function ($scope, Words) {
         // Reset timer.
         $scope.timer = 6;
         start = new Date();
-        intervalCode = setTimeout(function() { $scope.timeout(); }, 250);
+        $scope.updateCountDown();
     };
-    $scope.round();
-
-    $scope.timeout = function() {
-        // Verify if the timeout as passed or if only the timer must be updated.
-        var now = new Date();
-        if(now.getTime() - start.getTime() > 6000) {
-            // A timeout is like an incorrect answer.
-            $scope.answer(-1);
-        } else {
-            // Decrease timer.
-            $scope.timer = 6 - parseInt((now.getTime() - start.getTime())/1000, 10);
-
-            // Set timeout again.
-            intervalCode = setTimeout(function() { $scope.timeout(); }, 250);
-        }
-
-        // Update UI.
-        $scope.$apply();
-    };
+    $scope.startRound();
 
     // Select an answer.
-    $scope.answer = function(number) {
-        // Stop timeout.
-        clearTimeout(intervalCode);
-
+    $scope.selectAnswer = function(number) {
         // Verify if the answer was correct.
         if(number === $scope.distance) {
             // Increase points.
@@ -112,8 +108,13 @@ moduleCtrl.controller('GameController', function ($scope, Words) {
         }
 
         // Start a new round.
-        $scope.round();
+        $scope.startRound();
     };
+
+    $scope.$on("$destroy", function(){
+        // Stop timer if need.
+        if(intervalCode !== null) $timeout.cancel(intervalCode);
+    });
 
     // Hide error and success messages.
     jQuery("#message").css('opacity', 0);
