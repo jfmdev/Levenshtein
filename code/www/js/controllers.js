@@ -58,7 +58,7 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
         $scope.word1 = words[index];
 
         // Select the distance.
-        $scope.distance = parseInt(Math.random() * ($scope.maxDistance-1), 10) + 1;
+        $scope.distance = Math.round(Math.random() * ($scope.maxDistance-1)) + 1;
 
         // Search for a word that satisfy that distance.
         index = parseInt(Math.random() * (words.length-1), 10);
