@@ -42,5 +42,6 @@ module.config(function ($translateProvider) {
         Scores: 'Scores',
         'How to play': 'Comment jouer',
     });
+    $translateProvider.useSanitizeValueStrategy(null);
     $translateProvider.preferredLanguage('en');
 });
