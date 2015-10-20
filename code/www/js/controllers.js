@@ -13,9 +13,11 @@ moduleCtrl.controller('IntroController', function ($scope, $translate, Settings)
     });
 });
 
-moduleCtrl.controller('GameController', function ($scope, $timeout, Words) {
+moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout, Game) {
     // Initialize variables.
-    var words = Words.get('normal');
+    var words = Game.getWords($routeParams.difficulty);
+    var roundTime = Game.getSeconds($routeParams.difficulty)*1000;
+    $scope.maxDistance = Game.getMaxDistance($routeParams.difficulty);
     $scope.word1 = "";
     $scope.word2 = "";
     $scope.distance = 0;
@@ -31,12 +33,12 @@ moduleCtrl.controller('GameController', function ($scope, $timeout, Words) {
     $scope.updateCountDown = function() {
         // Verify if the timeout as passed or if only the timer must be updated.
         var now = new Date();
-        if(now.getTime() - start.getTime() > 6000) {
+        if(now.getTime() - start.getTime() > roundTime) {
             // A timeout is like an incorrect answer.
             $scope.selectAnswer(-1);
         } else {
             // Decrease timer.
-            $scope.timer = parseFloat(6 - (now.getTime() - start.getTime())/1000).toFixed(2);
+            $scope.timer = parseFloat((roundTime - (now.getTime() - start.getTime()))/1000).toFixed(2);
 
             // Set timeout again.
             intervalCode = $timeout(function() { $scope.updateCountDown(); }, 110);
@@ -56,7 +58,7 @@ moduleCtrl.controller('GameController', function ($scope, $timeout, Words) {
         $scope.word1 = words[index];
 
         // Select the distance.
-        $scope.distance = parseInt(Math.random() * 4, 10) + 1;
+        $scope.distance = parseInt(Math.random() * ($scope.maxDistance-1), 10) + 1;
 
         // Search for a word that satisfy that distance.
         index = parseInt(Math.random() * (words.length-1), 10);

@@ -1,9 +1,21 @@
 <div class="container" id="home">
+    <h2 class="text-center">{{ 'Play' | translate }}</h2>
     <div class="row text-center">
         <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
-            <a class="btn btn-success btn-block" href="#/game" role="button">{{ 'Play' | translate }}</a>
+            <a class="btn btn-success btn-block" href="#/game/easy" role="button">{{ 'Easy' | translate }}</a>
         </div>
     </div>
+    <div class="row text-center">
+        <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
+            <a class="btn btn-success btn-block" href="#/game/normal" role="button">{{ 'Normal' | translate }}</a>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
+            <a class="btn btn-success btn-block" href="#/game/hard" role="button">{{ 'Hard' | translate }}</a>
+        </div>
+    </div>
+    <br/>
     <div class="row text-center">
         <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
             <a class="btn btn-default btn-block" href="#/scores" role="button">{{ 'Scores' | translate }}</a>
@@ -11,13 +23,15 @@
     </div>
     <div class="row text-center">
         <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
-            <a class="btn btn-info btn-block" href="#/help" role="button">{{ 'How to play' | translate }}</a>
+            <a class="btn btn-default btn-block" href="#/help" role="button">{{ 'How to play' | translate }}</a>
         </div>
     </div>
+    <br/>
     <div class="row text-center">
         <form>
             <div class="form-group">
                 <label for="languageComboBox">Language</label>
+                <br/>
                 <select ng-model="lang" id="languageComboBox">
                     <option value='en'>English</option>
                     <option value='es'>Español</option>

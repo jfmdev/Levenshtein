@@ -34,15 +34,15 @@ moduleSvc.factory('Settings', function($translate) {
     return settings;
 });
 
-// Service for get the list of words to use.
-moduleSvc.factory('Words', function(Settings) {
+// Service for get the settings of a game.
+moduleSvc.factory('Game', function(Settings) {
     var list = {
         /**
          * Get the words to use in the game.
          *
          * @param {string} difficulty The difficulty.
          */
-        get: function(difficulty) {
+        getWords: function(difficulty) {
             var words = us_normal;
             var lang = Settings.getLang();
             if(lang === 'en' && difficulty === 'easy') { words = us_easy; }
@@ -55,6 +55,20 @@ moduleSvc.factory('Words', function(Settings) {
             if(lang === 'fr' && difficulty === 'normal') { words = fr_normal; }
             if(lang === 'fr' && difficulty === 'hard') { words = fr_hard; }
             return words
+        },
+
+        getSeconds: function(difficulty) {
+            if(difficulty == 'easy') return 6;
+            if(difficulty == 'normal') return 5;
+            if(difficulty == 'hard') return 4;
+            return 5;
+        },
+
+        getMaxDistance: function(difficulty) {
+            if(difficulty == 'easy') return 3;
+            if(difficulty == 'normal') return 4;
+            if(difficulty == 'hard') return 5;
+            return 4;
         },
     };
 

@@ -8,7 +8,7 @@ module.config(['$routeProvider', function($routeProvider) {
             controller: 'IntroController',
             templateUrl: 'views/intro.html'
         })
-        .when('/game', {
+        .when('/game/:difficulty?', {
             controller: 'GameController',
             templateUrl: 'views/game.html'
         })
@@ -31,16 +31,25 @@ module.config(function ($translateProvider) {
         Play: 'Play',
         Scores: 'Scores',
         'How to play': 'How to play',
+        Easy: 'Easy',
+        Normal: 'Normal',
+        Hard: 'Hard',
     });
     $translateProvider.translations('es', {
         Play: 'Jugar',
         Scores: 'Puntajes',
         'How to play': 'Como jugar',
+        Easy: 'Fácil',
+        Normal: 'Normal',
+        Hard: 'Difícil',
     });
     $translateProvider.translations('fr', {
         Play: 'Jouer',
         Scores: 'Scores',
         'How to play': 'Comment jouer',
+        Easy: 'Facile',
+        Normal: 'Moyen',
+        Hard: 'Difficile',
     });
     $translateProvider.useSanitizeValueStrategy(null);
     $translateProvider.preferredLanguage('en');
