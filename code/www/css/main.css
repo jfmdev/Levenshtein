@@ -2,10 +2,12 @@
 div.answer a {
     min-width: 80px;
     font-weight: bold;
+    margin-bottom: 3px;
 }
 
-div.word {
+div.words {
     font-size: 28px;
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
 div.timer {
