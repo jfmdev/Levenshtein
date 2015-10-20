@@ -36,10 +36,10 @@ moduleCtrl.controller('GameController', function ($scope, $timeout, Words) {
             $scope.selectAnswer(-1);
         } else {
             // Decrease timer.
-            $scope.timer = 6 - parseInt((now.getTime() - start.getTime())/1000, 10);
+            $scope.timer = parseFloat(6 - (now.getTime() - start.getTime())/1000).toFixed(2);
 
             // Set timeout again.
-            intervalCode = $timeout(function() { $scope.updateCountDown(); }, 900);
+            intervalCode = $timeout(function() { $scope.updateCountDown(); }, 110);
         }
 
         // Update UI.
