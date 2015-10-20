@@ -1,32 +1,35 @@
-<div class="row text-center">
-    <div class="col-md-4 word col-md-offset-2">
-        <div>{{word1}}</div>
-        <div>{{word2}}</div>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-4 word col-md-offset-2">
+            <div>{{word1}}</div>
+            <div>{{word2}}</div>
+        </div>
+        <div class="col-md-4 timer">
+            {{timer}}
+        </div>
     </div>
-    <div class="col-md-4 timer">
-        {{timer}}
+
+    <br />
+
+    <div class="row text-center">
+        <div class="col-md-4 col-md-offset-2 answer">
+            <a class="btn btn-info" role="button" ng-click="answer(1)">1</a>
+            <a class="btn btn-info" role="button" ng-click="answer(2)">2</a>
+            <a class="btn btn-info" role="button" ng-click="answer(3)">3</a>
+            <a class="btn btn-info" role="button" ng-click="answer(4)">4</a>
+            <a class="btn btn-info" role="button" ng-click="answer(5)">5</a>
+        </div>
+        <div class="col-md-4 points">
+            <strong>Points: <em>{{points}}</em></strong>
+        </div>
     </div>
-</div>
 
-<br/>
+    <br />
+    <br />
 
-<div class="row text-center">
-    <div class="col-md-4 col-md-offset-2 answer">
-        <a class="btn btn-info" role="button" ng-click="answer(1)">1</a>
-        <a class="btn btn-info" role="button" ng-click="answer(2)">2</a>
-        <a class="btn btn-info" role="button" ng-click="answer(3)">3</a>
-        <a class="btn btn-info" role="button" ng-click="answer(4)">4</a>
-        <a class="btn btn-info" role="button" ng-click="answer(5)">5</a>
-    </div>
-    <div class="col-md-4 points">
-        <strong>Points: <em>{{points}}</em></strong>
-    </div>
-</div>
-
-<br/><br/>
-
-<div class="row text-center">
-    <div class="col-md-8 col-md-offset-2">
-        <div id="message">{{message}}</div>
+    <div class="row text-center">
+        <div class="col-md-8 col-md-offset-2">
+            <div id="message">{{message}}</div>
+        </div>
     </div>
 </div>

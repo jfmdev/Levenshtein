@@ -25,3 +25,7 @@ div.points em {
     font-size: 30px;
     font-weight: bold;
 }
+
+#home > div.row {
+    margin-top: 8px;
+}
