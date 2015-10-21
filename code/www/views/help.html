@@ -1,19 +1,84 @@
 <div class="container">
-    <div class="row">
+    <h2 class="text-center">{{ 'How to play' | translate }}</h2>
+
+    <div class="row" ng-show="lang == 'en'">
         <div class="col-md-8 col-md-offset-2">
+            <p>You must calculate the <a href="http://en.wikipedia.org/wiki/Levenshtein_distance" target="_blank">Levenshtein distance</a>
+            (sometines also called <a href="https://en.wikipedia.org/wiki/Edit_distance" target="_blank">edit distance</a>) between the two words that appears on the screen,
+            and then submit your answer by pressing one of the numerical buttons.</p>
+
             <div class="alert alert-info" role="alert">
-                <div>
-                    <p><strong>How to play:</strong> you must calculate the Levenshtein distance between the two words that appears on the screen,
-                    and then submit your answer by pressing one of the numerical buttons.
-                    The more consecutive correct answer you make, the more points you get, but be careful: if you make an error, you lost all points.
-                    <br/>A timer indicates how many time you have left to answer. If the timer expires, it counts as an error and you lost your points.</p>
-                </div>
-                <div class="small">
-                    <em><strong>Levenshtein distance:</strong>
-                    the Levenshtein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
-                    Source: <a href="http://en.wikipedia.org/wiki/Levenshtein_distance">Wikipedia</a></em>
-                </div>
+                <p>The Levenshtein distance between two words is the minimum number of single-character edits
+                (i.e. insertions, deletions or substitutions) required to change one word into the other.</p>
+
+                <p>For example:</p>
+                <ul>
+                    <li>The distance between <strong>dog</strong> and <strong>dogs</strong> is 1: you must only add a "s" .</li>
+                    <li>The distance between <strong>swept</strong> and <strong>scent</strong> is 2: you must replace the "w" with a "c", and the "p" with a "n".</li>
+                    <li>The distance between <strong>awake</strong> and <strong>rewake</strong> is 2: you must add a "r" at the beginning, and replace the first "a" with a "e".</li>
+                </ul>
             </div>
+
+            <p>The more consecutive correct answer you make, the more points you get, but be careful: if you make an error, you lost all your points.</p>
+
+            <p>A timer indicates how many time you have left to answer. If the timer expires, it counts as an error and you also lost all your points.</p>
+        </div>
+    </div>
+
+    <div class="row" ng-show="lang == 'es'">
+        <div class="col-md-8 col-md-offset-2">
+            <p>Debes calcular la <a href="https://es.wikipedia.org/wiki/Distancia_de_Levenshtein" target="_blank">distancia de Levenshtein</a>
+            (también llamada <em>distancia de edición</em>) entre las dos palabras que aparecen en la pantalla,
+            y luego presionar uno de los botones numéricos con tu respuesta.</p>
+
+            <div class="alert alert-info" role="alert">
+                <p>La distancia de Levenshtein entre dos palabras es el número mínimo de operaciones (es decir, agregar, eliminar o reemplazar caracteres)
+                requeridas para transformar una palabra en otra.</p>
+
+                <p>Por ejemplo:</p>
+                <ul>
+                    <li>La distancia entre <strong>perro</strong> y <strong>perros</strong> es 1: solo hay que agregar una "s" .</li>
+                    <li>La distancia entre <strong>lluvia</strong> y <strong>llovió</strong> es 2: hay que reemplazar la "u" por una "o" y la "a" por una "ó".</li>
+                    <li>La distancia entre <strong>bujía</strong> y <strong>baja</strong> es 2: hay que reemplazar la "u" por una "a" y eliminar la "í".</li>
+                </ul>
+            </div>
+
+            <p>Cuanto más aciertos consecutivos hagas, más puntos obtendras, pero ten cuidado: si cometes un error, pierdes todos tus puntos.</p>
+
+            <p>Un contador indica cuanto tiempo tienens para elegir tu respuesta. Si el contador llega a cero, se considera una respuesta incorrecta,
+            y también pierdes todos tus puntos.</p>
+        </div>
+    </div>
+
+    <div class="row" ng-show="lang == 'fr'">
+        <div class="col-md-8 col-md-offset-2">
+            <p>Tu doit calculer la <a href="https://fr.wikipedia.org/wiki/Distance_de_Levenshtein" target="_blank">distance de Levenshtein</a>
+            (parfois appelé <em>distance d'édition</em>) entre les deux mots qui apparaissent sur l'écran,
+            et ensuite soumettre votre réponse en appuyant les boutons numériques.</p>
+
+            <div class="alert alert-info" role="alert">
+                <p>La distance Levenshtein entre deux mots est le nombre minimum de modifications à caractère unique
+                (c'ést à dire insertions, délétions ou des substitutions) nécessaires pour changer un mot dans l'autre.</p>
+
+                <p>Par exemple:</p>
+                <ul>
+                    <li>La distance entre <strong>chien</strong> et <strong>chiens</strong> est 1: you must only add a "s" .</li>
+                    <li>La distance entre <strong>candir</strong> et <strong>pandit</strong> est 2: il faut remplacer le "c" par "p", et le "r" par "t".</li>
+                    <li>La distance entre <strong>inégal</strong> et <strong>régal</strong> est 2: il faut ajouter une "i", et remplacer le "r" par "n".</li>
+                </ul>
+            </div>
+            
+            <p>Ton score  augmentera avec des réponses correctes consécutives, mais attention: si tu donne une réponse incorrecte, tu perdra tous tes points.</p>
+
+            <p>Une chronomètre indique combien de temps reste pour répondre. Si le délai expire, on considère une réponse incorrect, et tu perd aussi tous tes points.</p>
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="row text-center">
+        <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
+            <a class="btn btn-default btn-block" href="#/" role="button">{{ 'Go back' | translate }}</a>
         </div>
     </div>
 </div>

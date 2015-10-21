@@ -34,6 +34,8 @@ module.config(function ($translateProvider) {
         Easy: 'Easy',
         Normal: 'Normal',
         Hard: 'Hard',
+        'Go back': 'Go back',
+        Finalize: 'Finalize',
     });
     $translateProvider.translations('es', {
         Play: 'Jugar',
@@ -42,6 +44,8 @@ module.config(function ($translateProvider) {
         Easy: 'Fácil',
         Normal: 'Normal',
         Hard: 'Difícil',
+        'Go back': 'Regresar',
+        Finalize: 'Finalizar',
     });
     $translateProvider.translations('fr', {
         Play: 'Jouer',
@@ -50,6 +54,8 @@ module.config(function ($translateProvider) {
         Easy: 'Facile',
         Normal: 'Moyen',
         Hard: 'Difficile',
+        'Go back': 'Retourner',
+        Finalize: 'Finaliser',
     });
     $translateProvider.useSanitizeValueStrategy(null);
     $translateProvider.preferredLanguage('en');

@@ -2,6 +2,15 @@
 // Declare module.
 var moduleCtrl = angular.module('module.Controllers', ['pascalprecht.translate']);
 
+// Controller for the navigation bar.
+moduleCtrl.controller('NavBarController', function ($scope, Settings) {
+    // Restore previously selected language.
+    $scope.start = function() {
+console.log("start")
+        Settings.setLang(Settings.getLang());
+    };
+});
+
 // Controller for the home view.
 moduleCtrl.controller('IntroController', function ($scope, $translate, Settings) {
     // Initialize language.
@@ -132,6 +141,7 @@ moduleCtrl.controller('ScoresController', function ($scope) {
 });
 
 // Controller for the help view.
-moduleCtrl.controller('HelpController', function ($scope) {
-    // Do nothing.
+moduleCtrl.controller('HelpController', function ($scope, Settings) {
+    // Get language.
+    $scope.lang = Settings.getLang();
 });

@@ -23,6 +23,10 @@ div.points em {
     color: blue;
 }
 
+h2 {
+    margin-top: 10px;
+}
+
 #message {
     font-size: 30px;
     font-weight: bold;
