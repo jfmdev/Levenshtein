@@ -36,6 +36,7 @@ module.config(function ($translateProvider) {
         Hard: 'Hard',
         'Go back': 'Go back',
         Finalize: 'Finalize',
+        'No scores available': 'No scores available',
     });
     $translateProvider.translations('es', {
         Play: 'Jugar',
@@ -46,6 +47,7 @@ module.config(function ($translateProvider) {
         Hard: 'Difícil',
         'Go back': 'Regresar',
         Finalize: 'Finalizar',
+        'No scores available': 'No hay puntajes disponibles',
     });
     $translateProvider.translations('fr', {
         Play: 'Jouer',
@@ -56,6 +58,7 @@ module.config(function ($translateProvider) {
         Hard: 'Difficile',
         'Go back': 'Retourner',
         Finalize: 'Finaliser',
+        'No scores available': 'Pas de scores disponibles',
     });
     $translateProvider.useSanitizeValueStrategy(null);
     $translateProvider.preferredLanguage('en');

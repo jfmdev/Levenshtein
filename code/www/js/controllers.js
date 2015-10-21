@@ -6,7 +6,6 @@ var moduleCtrl = angular.module('module.Controllers', ['pascalprecht.translate']
 moduleCtrl.controller('NavBarController', function ($scope, Settings) {
     // Restore previously selected language.
     $scope.start = function() {
-console.log("start")
         Settings.setLang(Settings.getLang());
     };
 });
@@ -22,7 +21,7 @@ moduleCtrl.controller('IntroController', function ($scope, $translate, Settings)
     });
 });
 
-moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout, Game) {
+moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout, Game, Scores) {
     // Initialize variables.
     var words = Game.getWords($routeParams.difficulty);
     var roundTime = Game.getSeconds($routeParams.difficulty)*1000;
@@ -33,10 +32,12 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
     $scope.timer = 0;
     $scope.points = 0;
     $scope.message = null;
+    $scope.successRate = 0;
+    $scope.record = Scores.getHighestScore($routeParams.difficulty);
     var intervalCode = null;
     var start = null;
-    var scores = amplify.store("scores");
-    if(scores === null || !Array.isArray(scores)) scores = [];
+    var stats_total = 0;
+    var stats_correct = 0;
 
     // Function to update countdown.
     $scope.updateCountDown = function() {
@@ -93,10 +94,17 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
 
     // Select an answer.
     $scope.selectAnswer = function(number) {
+        // Update stat count.
+        stats_total++;
+
         // Verify if the answer was correct.
         if(number === $scope.distance) {
-            // Increase points.
+            // Increase points and stats.
             $scope.points += 5;
+            stats_correct++;
+
+            // Verify if the record must be increased.
+            if($scope.points > $scope.record) $scope.record = $scope.points;
 
             // Show success message.
             $scope.message = "Good!";
@@ -107,16 +115,15 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
             jQuery("#message").stop().css('color', 'red').css('opacity', 1).animate({opacity:0}, 800);
 
             // Verify if points must be added to score.
-            if($scope.points > 0 && (scores.length < 10 || scores[9].value < $scope.points)) {
-                scores.push({value: $scope.points, date: new Date().getTime()});
-                scores.sort(function(a,b) { return - (a.value - b.value); });
-                if(scores.length > 10) scores = scores.slice(0, 10);
-                amplify.store("scores", scores);
-            }
+            Scores.submitScore($routeParams.difficulty, $scope.points);
+            $scope.record = Scores.getHighestScore($routeParams.difficulty);
 
             // Clear points.
             $scope.points = 0;
         }
+
+        // Update success rate.
+        $scope.successRate = parseInt(100*stats_correct/stats_total);
 
         // Start a new round.
         $scope.startRound();
@@ -132,8 +139,10 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
 });
 
 // Controller for the view for display scores.
-moduleCtrl.controller('ScoresController', function ($scope) {
-    $scope.scores = amplify.store("scores");
+moduleCtrl.controller('ScoresController', function ($scope, Scores) {
+    $scope.easyScores = Scores.getScores('easy');
+    $scope.normalScores = Scores.getScores('normal');
+    $scope.hardScores = Scores.getScores('hard');
 
     $scope.niceDate = function(milliseconds) {
         return moment(milliseconds).format("LLL");
