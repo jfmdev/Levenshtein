@@ -8,7 +8,7 @@ It was developed as a HTML5 app, using _Apache Cordova_, _AngularJS_ and _Bootst
 
 The user interface is available in English, Spanish and French.
 
-[See online demo](http://jfmdev.github.io/Levenshtein)
+[See online demo](http://jfmdev.github.io/Levenshtein/)
 
 License
 -------
