@@ -1,9 +1,14 @@
 Levenshtein Challenge
 ====================
 
+**Levenshtein Challenge** is a simple game in which you must calculate the _edit distance_
+between words.
 
+It was developed as a HTML5 app, using _Apache Cordova_, _AngularJS_ and _Bootstrap_. 
 
+The user interface is available in English, Spanish and French.
 
+[See online demo](http://jfmdev.github.io/Levenshtein)
 
 License
 -------
