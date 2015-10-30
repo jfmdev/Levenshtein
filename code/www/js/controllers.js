@@ -38,6 +38,7 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
     var start = null;
     var stats_total = 0;
     var stats_correct = 0;
+    var difficulty = $routeParams.difficulty;
 
     // Function to update countdown.
     $scope.updateCountDown = function() {
@@ -68,7 +69,7 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
         $scope.word1 = words[index];
 
         // Select the distance.
-        $scope.distance = Math.round(Math.random() * ($scope.maxDistance-1)) + 1;
+        $scope.distance = Math.floor(Math.random() * ($scope.maxDistance)) + 1;
 
         // Search for a word that satisfy that distance.
         index = parseInt(Math.random() * (words.length-1), 10);
@@ -93,7 +94,7 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
     $scope.startRound();
 
     // Select an answer.
-    $scope.selectAnswer = function(number) {
+    $scope.selectAnswer = function(number, stop) {
         // Update stat count.
         stats_total++;
 
@@ -115,8 +116,8 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
             jQuery("#message").stop().css('color', 'red').css('opacity', 1).animate({opacity:0}, 800);
 
             // Verify if points must be added to score.
-            Scores.submitScore($routeParams.difficulty, $scope.points);
-            $scope.record = Scores.getHighestScore($routeParams.difficulty);
+            Scores.submitScore(difficulty, $scope.points);
+            $scope.record = Scores.getHighestScore(difficulty);
 
             // Clear points.
             $scope.points = 0;
@@ -126,10 +127,13 @@ moduleCtrl.controller('GameController', function ($scope, $routeParams, $timeout
         $scope.successRate = parseInt(100*stats_correct/stats_total);
 
         // Start a new round.
-        $scope.startRound();
+        if(stop !== true)$scope.startRound();
     };
 
     $scope.$on("$destroy", function(){
+        // Consider an invalid answer before exit.
+        $scope.selectAnswer(-1, true);
+
         // Stop timer if need.
         if(intervalCode !== null) $timeout.cancel(intervalCode);
     });

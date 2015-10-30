@@ -147,7 +147,7 @@ moduleSvc.factory('Scores', function() {
 
                 // Store new score list and update flag.
                 amplify.store("scores", scores);
-                res = true;
+                res = true;     
             }
 
             return res;
