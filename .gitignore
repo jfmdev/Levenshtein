@@ -1,0 +1,5 @@
+syntax: glob
+code/platforms/*
+!code/platforms/chrome/manifest.json
+!code/platforms/chrome/background.js
+code/plugins/*
