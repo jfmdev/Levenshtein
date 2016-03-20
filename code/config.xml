@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="levenshtein.jfmdev.github.io" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="levenshtein.jfmdev.github.io" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>LevenshteinChallenge</name>
     <description>
         A simple game in which you must calculate the 'edit distance' between two words
     </description>
-    <author email="kudalab@inboxalias.com" href="http://jfmdev.github.io">
+    <author email="jfmdev@inboxalias.com" href="http://jfmdev.github.io">
         JFMDev
     </author>
     <icon src="res/icon_128.png" />
